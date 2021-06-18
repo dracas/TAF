@@ -13,9 +13,9 @@ class LoginPage(BasePage):
         assert 'login' in current_page_url, "Substring 'login' is missing in the current URL"
 
     def should_be_login_form(self):
-        error_text_for_login_form = "Login form is missing on 'Login or register' page"
-        assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), error_text_for_login_form
+        assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), \
+            "Login form is missing on 'Login or register' page"
 
     def should_be_register_form(self):
-        error_text_for_register_form = "Register form is missing on 'Login or register' page"
-        assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), error_text_for_register_form
+        assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), \
+            "Register form is missing on 'Login or register' page"
