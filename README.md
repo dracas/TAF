@@ -15,6 +15,8 @@ This repository created for fourth module, for final task. The course: https://s
 
 /pages/product_page.py - храним методы для страницы товара;
 
-/test_main_page.py - храним сами тест-кейсы, которые будем запускать с помощью pytest;
+/pages/basket_page.py - храним методы для страницы корзины;
+
+/test_main_page.py - храним сами тест-кейсы относящихся к главной странице, которые будем запускать с помощью pytest;
 
 /test_product_page.py - файл для тест-кейсов, связанных со страницей товара;
