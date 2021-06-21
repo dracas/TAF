@@ -1,7 +1,36 @@
 from .pages.product_page import ProductPage
-import pytest        # необходимо будет убрать, т.к. уже есть импорт в conftest, сейчас нужна чтобы PC не ругался
 from .pages.login_page import LoginPage
 from .pages.basket_page import BasketPage
+import pytest
+from mimesis import Person
+
+
+class TestUserAddToBasketFromProductPage:
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        person = Person('en')
+        random_email = person.email(domains=['mimesis.com'])
+        random_password = "gfix8S?#DT5!EJpD"
+        link = "https://selenium1py.pythonanywhere.com/"
+        page = LoginPage(browser, link)
+        page.open()
+        page.go_to_login_page()
+        page.register_new_user(random_email, random_password)
+        page.should_be_authorized_user()
+
+    def test_user_cant_see_success_message(self, browser):
+        link = "https://selenium1py.pythonanywhere.com/catalogue/hacking-exposed-wireless_208/"
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_not_be_success_message()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        link = "https://selenium1py.pythonanywhere.com/catalogue/hacking-exposed-wireless_208/"
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_be_an_opportunity_add_product_to_basket()
+        # page.solve_quiz_and_get_code()
+        page.should_be_correct_price_and_name()
 
 
 @pytest.mark.parametrize(
