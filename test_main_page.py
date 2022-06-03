@@ -1,11 +1,13 @@
+import pytest
+from pytest_testrail.plugin import pytestrail
 from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
 from .pages.basket_page import BasketPage
-import pytest
 
 
 @pytest.mark.login_guest
 class TestLoginFromMainPage:
+    @pytestrail.case('4')
     def test_guest_can_go_to_login_page(self, browser):
         link = "https://selenium1py.pythonanywhere.com"
         page = MainPage(browser, link)
@@ -14,6 +16,7 @@ class TestLoginFromMainPage:
         login_page = LoginPage(browser, browser.current_url)
         login_page.should_be_login_page()
 
+    @pytestrail.case('3')
     def test_guest_should_see_login_link(self, browser):
         link = "https://selenium1py.pythonanywhere.com/"
         page = MainPage(browser, link)
@@ -21,6 +24,7 @@ class TestLoginFromMainPage:
         page.should_be_login_link()
 
 
+@pytestrail.case('5')
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     link = "https://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link)

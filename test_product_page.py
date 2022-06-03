@@ -1,8 +1,9 @@
+from mimesis import Person
+import pytest
+from pytest_testrail.plugin import pytestrail
 from .pages.product_page import ProductPage
 from .pages.login_page import LoginPage
 from .pages.basket_page import BasketPage
-import pytest
-from mimesis import Person
 
 
 class TestUserAddToBasketFromProductPage:
@@ -18,6 +19,7 @@ class TestUserAddToBasketFromProductPage:
         page.register_new_user(random_email, random_password)
         page.should_be_authorized_user()
 
+    @pytestrail.case('14')
     def test_user_cant_see_success_message(self, browser):
         link = "https://selenium1py.pythonanywhere.com/catalogue/hacking-exposed-wireless_208/"
         page = ProductPage(browser, link)
@@ -25,6 +27,7 @@ class TestUserAddToBasketFromProductPage:
         page.should_not_be_success_message()
 
     @pytest.mark.need_review
+    @pytestrail.case('13')
     def test_user_can_add_product_to_basket(self, browser):
         link = "https://selenium1py.pythonanywhere.com/catalogue/hacking-exposed-wireless_208/"
         page = ProductPage(browser, link)
@@ -34,6 +37,7 @@ class TestUserAddToBasketFromProductPage:
 
 
 @pytest.mark.need_review
+@pytestrail.case('12')
 @pytest.mark.parametrize(
     'link', ["https://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
              "https://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
@@ -55,6 +59,7 @@ def test_guest_can_add_product_to_basket(browser, link):
 
 
 @pytest.mark.xfail
+@pytestrail.case('11')
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = "https://selenium1py.pythonanywhere.com/catalogue/hacking-exposed-wireless_208/"
     page = ProductPage(browser, link)
@@ -63,6 +68,7 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page.should_not_be_success_message()
 
 
+@pytestrail.case('10')
 def test_guest_cant_see_success_message(browser):
     link = "https://selenium1py.pythonanywhere.com/catalogue/hacking-exposed-wireless_208/"
     page = ProductPage(browser, link)
@@ -71,6 +77,7 @@ def test_guest_cant_see_success_message(browser):
 
 
 @pytest.mark.xfail
+@pytestrail.case('9')
 def test_message_disappeared_after_adding_product_to_basket(browser):
     link = "https://selenium1py.pythonanywhere.com/catalogue/hacking-exposed-wireless_208/"
     page = ProductPage(browser, link)
@@ -79,6 +86,7 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.should_be_disappeared_success_message()
 
 
+@pytestrail.case('8')
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "https://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -87,6 +95,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
 
 
 @pytest.mark.need_review
+@pytestrail.case('6')
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "https://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -97,6 +106,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
 
 
 @pytest.mark.need_review
+@pytestrail.case('7')
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "https://selenium1py.pythonanywhere.com/catalogue/google-hacking_197/"
     page = ProductPage(browser, link)
