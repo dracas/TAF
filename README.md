@@ -13,3 +13,7 @@ To run tests and send results to Slack:
 To run tests and send results to TestRail:
 1. in testreil_config.cfg: Add your url, email, password
 2. Run: pytest --testrail --tr-config=testreil_config.cfg
+
+To run tests and send results to ReportPortal:
+1. in pytest.ini: Add rp_endpoint, rp_uuid, rp_launch, rp_project
+2. Run: pytest --reportportal
