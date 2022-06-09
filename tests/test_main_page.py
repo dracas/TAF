@@ -1,8 +1,8 @@
 import pytest
 from pytest_testrail.plugin import pytestrail
-from .pages.main_page import MainPage
-from .pages.login_page import LoginPage
-from .pages.basket_page import BasketPage
+from taf.pages.main_page import MainPage
+from taf.pages.login_page import LoginPage
+from taf.pages.basket_page import BasketPage
 
 
 @pytest.mark.login_guest

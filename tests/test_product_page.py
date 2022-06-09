@@ -1,9 +1,9 @@
 from mimesis import Person
 import pytest
 from pytest_testrail.plugin import pytestrail
-from .pages.product_page import ProductPage
-from .pages.login_page import LoginPage
-from .pages.basket_page import BasketPage
+from taf.pages.product_page import ProductPage
+from taf.pages.login_page import LoginPage
+from taf.pages.basket_page import BasketPage
 
 
 class TestUserAddToBasketFromProductPage:
