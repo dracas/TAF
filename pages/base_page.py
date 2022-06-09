@@ -5,6 +5,9 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import math
 from .locators import BasePageLocators
+import logging
+
+LOGGER = logging.getLogger()
 
 
 class BasePage:
@@ -64,7 +67,7 @@ class BasePage:
         try:
             alert = self.browser.switch_to.alert
             alert_text = alert.text
-            print(f"Your code: {alert_text}")
+            LOGGER.info(f"Your code: {alert_text}")
             alert.accept()
         except NoAlertPresentException:
-            print("No second alert presented")
+            LOGGER.error("No second alert presented")
